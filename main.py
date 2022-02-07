@@ -32,7 +32,7 @@ class Simplex:
     def is_optimal(self):
         return np.all(self.T[-1, :-2] >= 0)
 
-    def find_pivot(self):
+    def find_col(self):
         return np.argmin(self.T[-1, :-2])
 
     def find_row(self, var_idx):
@@ -55,6 +55,6 @@ class Simplex:
 
     def solve(self):
         while not self.is_optimal():
-            col = self.find_pivot()
+            col = self.find_col()
             row = self.find_row(col)
             self.eliminate(row, col)
